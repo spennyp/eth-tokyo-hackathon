@@ -11,6 +11,7 @@ export interface MainLayoutProps {
 function Header() {
     return (
         <Flex as="header" width="100%" justifyContent="justify-start" alignItems="center" p={4} backgroundColor="blue">
+            <div className="bg-black white text-xl">tailwind test</div>
             <Text>LOGO</Text>
             <Stack spacing={4} direction="row" align="center">
                 <Link as={NextLink} href="/">
