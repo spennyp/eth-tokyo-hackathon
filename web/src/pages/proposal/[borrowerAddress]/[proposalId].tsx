@@ -1,12 +1,14 @@
 import { useRouter } from "next/router";
-import { ProposalType } from "../../../../common/types";
-import { proposal } from "../../../../common/mock";
+import { Loan } from "../../../common/types";
+import { proposal } from "../../../common/mock";
 import { useState } from "react";
 import { Progress } from "@chakra-ui/react";
 import Image from "next/image";
 import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, TableContainer } from "@chakra-ui/react";
+import { getLoanFromSubgraph } from "@/common/subgraphQuery";
 
-export default function ProposalPage(props: ProposalType) {
+export default function ProposalPage(props: Loan) {
+    console.log(props);
     const router = useRouter();
     const { borrowerAddress, proposalId } = router.query;
     const [status, setStatus] = useState(0);
@@ -97,11 +99,15 @@ function ProgressComponent({ start, duration, end }: { start: number; duration: 
     );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context: any) {
     // const res = await fetch(`https://.../data`);
+    const { proposalId } = context.query;
+    const loan = await getLoanFromSubgraph(parseInt(proposalId));
+
+    const loanOrSeed = loan ?? proposal;
 
     return {
-        props: proposal,
+        props: loanOrSeed,
     };
 }
 

@@ -1,9 +1,10 @@
 import ProposalCard from "@/components/ProposalCard";
-import { exploreProposals } from "../../common/mock";
-import { ProposalType } from "../../common/types";
+import { exploreProposals } from "../common/mock";
+import { Loan } from "../common/types";
+import { getLoansFromSubgraph } from "@/common/subgraphQuery";
 
 interface IProposals {
-    proposals: ProposalType[];
+    proposals: Loan[];
 }
 
 export default function Explore(props: IProposals) {
@@ -20,9 +21,10 @@ export default function Explore(props: IProposals) {
 }
 
 export async function getServerSideProps() {
-    // const res = await fetch(`https://.../data`);
+    const loans = await getLoansFromSubgraph();
+    const loansWithSeeded = (loans ?? []).concat(exploreProposals);
 
     return {
-        props: { proposals: exploreProposals },
+        props: { proposals: loansWithSeeded },
     };
 }

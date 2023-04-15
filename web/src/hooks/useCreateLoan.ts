@@ -4,7 +4,7 @@ import { Address, useAccount } from "wagmi";
 import { AddressZero } from "@ethersproject/constants";
 
 import PeerToPeerLoansAbi from "../../abis/PeerToPeerLoans.json";
-import { PEER_TO_PEER_LOAN_ADDRESS } from "../../common/constants";
+import { PEER_TO_PEER_LOAN_ADDRESS } from "../common/constants";
 import useSendTransaction, { SendTransactionResponse } from "./useSendTransaction";
 
 interface UseCreateLoanConfig {

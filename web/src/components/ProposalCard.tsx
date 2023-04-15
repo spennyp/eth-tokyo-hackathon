@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { ProposalType } from "../../common/types";
+import { Loan } from "../common/types";
 import Image from "next/image";
 
 interface IProps {
-    proposal: ProposalType;
+    proposal: Loan;
 }
 
 export default function ProposalCard({ proposal }: IProps) {

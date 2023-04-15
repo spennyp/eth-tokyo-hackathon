@@ -1,8 +1,11 @@
 import ProposalCard from "@/components/ProposalCard";
-import { createdProposals, fundedProposals } from "../../../common/mock";
-import { ProposalsType } from "../../../common/types";
+import { createdProposals, fundedProposals } from "../../common/mock";
+import { ProposalsType } from "../../common/types";
+import { getLoansFromSubgraph } from "@/common/subgraphQuery";
+import { useAccount } from "wagmi";
 
 export default function Proposal(props: ProposalsType) {
+    console.log(props);
     return (
         <div className="flex w-full h-full flex-col justify-start items-center px-[20px] pb-[70px] space-y-8">
             <p className="text-[40px] font-bold text-center">Funded Proposals</p>
@@ -21,9 +24,11 @@ export default function Proposal(props: ProposalsType) {
     );
 }
 
-export async function getServerSideProps() {
-    // const res = await fetch(`https://.../data`);
+export async function getServerSideProps(context: any) {
+    // const loans = await getLoansFromSubgraph();
+    // const loansOrSeed = loans ?? exploreProposals;
 
+    // Not pulling from the graph right now
     const props: ProposalsType = {
         fundedProposals: fundedProposals,
         createdProposals: createdProposals,

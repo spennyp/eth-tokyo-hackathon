@@ -4,7 +4,7 @@ import { Address, useAccount, useContract, useContractRead } from "wagmi";
 import { MaxUint256 } from "@ethersproject/constants";
 
 import Erc20Abi from "../../abis/Erc20.json";
-import { PEER_TO_PEER_LOAN_ADDRESS } from "../../common/constants";
+import { PEER_TO_PEER_LOAN_ADDRESS } from "../common/constants";
 import useSendTransaction, { SendTransactionResponse } from "./useSendTransaction";
 
 interface UseApproveErc20Props {
