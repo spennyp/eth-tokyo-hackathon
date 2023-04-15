@@ -97,7 +97,7 @@ function Footer() {
                 </div>
                 <div className="flex w-[130px] flex-row justify-center lg:justify-end">
                     <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
-                        <img src={"/assets/twitter.svg"} className="h-[27px] w-[27px]" alt="twitter logo icon" />
+                        <Image src={"/images/twitter.svg"} width={27} height={27} alt="twitter logo icon" />
                     </a>
                 </div>
             </div>
