@@ -61,7 +61,7 @@ export default function CreateProposal() {
     };
 
     return (
-        <div className="flex flex-row justify-center w-full">
+        <div className="flex w-screen flex-col justify-center px-[20px] pt-[35px] pb-[70px] sm:px-[210px] md:flex-row md:pb-[106px] md:pt-[35px] lg:space-x-[80px] xl:space-x-[291px]">
             <div className="flex flex-col justify-start max-w-[400px] w-[400px] self-center space-y-4">
                 <p className="text-2xl font-bold">Create Proposal</p>
                 <FormControl isRequired>
