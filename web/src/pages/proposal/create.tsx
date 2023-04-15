@@ -19,6 +19,7 @@ export default function CreateProposal() {
     const [loanAmount, setLoanAmount] = useState("1");
     const [loanLength, setLoanLength] = useState(12);
     const [interestRate, setInterestRate] = useState(1.5);
+    const [country, setCountry] = useState("");
 
     const labelStyles = {
         mt: "2",
@@ -33,6 +34,13 @@ export default function CreateProposal() {
     let handleInputBioChange = (e: any) => {
         let inputValue = e?.target?.value;
         setBioValue(inputValue);
+    };
+
+    // This function is triggered when the select changes
+    const selectCountryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const value = event.target.value;
+        setCountry(value);
+        console.log(value);
     };
 
     return (
@@ -50,9 +58,13 @@ export default function CreateProposal() {
                 </FormControl>
                 <FormControl>
                     <FormLabel>Country</FormLabel>
-                    <Select placeholder="Select country">
+                    <Select placeholder="Select country" onChange={selectCountryChange}>
                         {countryList.map((country, id) => {
-                            return <option key={id}>{country}</option>;
+                            return (
+                                <option key={id} value={country}>
+                                    {country}
+                                </option>
+                            );
                         })}
                     </Select>
                 </FormControl>
