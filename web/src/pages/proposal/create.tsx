@@ -11,7 +11,7 @@ import { Slider, SliderTrack, SliderFilledTrack, SliderThumb, SliderMark } from 
 import { Input, Select } from "@chakra-ui/react";
 import { Text, Textarea } from "@chakra-ui/react";
 import { BigNumber } from "ethers";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { tokens } from "../../common/tokens";
 import { Address } from "wagmi";
 import { INTEREST_SCALER } from "../../common/constants";

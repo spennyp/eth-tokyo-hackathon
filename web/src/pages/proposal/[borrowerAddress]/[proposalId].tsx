@@ -59,10 +59,10 @@ export default function ProposalPage(props: Loan) {
                 </div>
             </div>
             <ProgressComponent start={props.fundDay} duration={props.lengthDays} end={props.repayDay} />
-            <button className="self-start h-[45px] w-fit items-center justify-center rounded-[15px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-[#48BB78] text-white">
+            <button className="self-start h-[45px] w-fit items-center justify-center rounded-[15px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-green text-white">
                 Pay Loan
             </button>
-            <button className="self-start h-[45px] w-fit items-center justify-center rounded-[15px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-[#48BB78] text-white">
+            <button className="self-start h-[45px] w-fit items-center justify-center rounded-[15px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-green text-white">
                 Fund Proposal
             </button>
         </div>

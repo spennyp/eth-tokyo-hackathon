@@ -1,10 +1,13 @@
+import { useRef } from "react";
 import { useAccount, useBalance } from "wagmi";
+import Spline from "@splinetool/react-spline";
 
 export default function Home() {
     const { address } = useAccount();
 
     return (
         <div className="flex flex-grow flex-col">
+            {/* <Spline scene="https://my.spline.design/molang3dcopy-71de584d6114952a214b47bfd65cd712/" onLoad={onLoad} /> */}
             <HeroSection />
         </div>
     );
