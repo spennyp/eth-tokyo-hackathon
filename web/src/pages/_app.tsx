@@ -2,9 +2,8 @@ import { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
 import { WagmiConfig, createClient } from "wagmi";
 import { ConnectKitProvider, ConnectKitButton, getDefaultClient, useIsMounted } from "connectkit";
-import { mainnet, polygon, optimism, arbitrum } from "wagmi/chains";
+import { mainnet, polygon, optimism, arbitrum, localhost } from "wagmi/chains";
 import "../globals.css";
-
 
 import MainLayout from "@/layouts/MainLayout";
 
