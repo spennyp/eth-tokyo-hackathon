@@ -122,7 +122,7 @@ function ProgressComponent({ start, duration, end }: { start: number; duration: 
                 </div>
                 <div className="flex flex-col">
                     <p>Funded</p>
-                    <p>180 days</p>
+                    <p>04/16/2023</p>
                 </div>
                 <div className="flex flex-col">
                     <p>Expiry</p>
