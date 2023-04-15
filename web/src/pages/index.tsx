@@ -15,19 +15,19 @@ export default function Home() {
 
 function HeroSection() {
     return (
-        <div className="flex flex-col items-center justify-center px-[20px] py-[80px] text-center">
-            <h1 className="w-full md:max-w-[600px]">Micro Finance Lending</h1>
+        <div className="flex flex-col items-center justify-center px-[20px] py-[80px] text-center bg-[url('/images/background.svg')]">
+            <p className="text-[65px] font-semibold w-full md:max-w-[600px]">Funding for projects you care about</p>
             <p className="p1 mt-[16px] w-full sm:max-w-[450px]">
                 A peer to peer, microfinance lending protocol that supercharges borrowing efficiency in
-                capital-constrained markets
+                capital-constrained markets.
             </p>
-            <div className="mt-[48px] flex flex-row items-center space-x-[36px]">
-                <button className="h-[40px] w-fit items-center justify-center rounded-[6px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-black text-white">
-                    Launch App
+            <div className="mt-[48px] flex flex-col items-center space-y-[26px]">
+                <button className="h-fit w-fit items-center justify-center rounded-[50px] px-[130px] py-[18px] text-[20px] font-[700] leading-[] cursor-pointer bg-gradient-to-r from-[#48BB78] to-[#1D6EB9] transition duration-1000 hover:to-[#48BB78] ease-in-out delay-200 text-white">
+                    Create
                 </button>
-                <a href="#features" className="font-semibold text-primary hover:underline">
-                    Features
-                </a>
+                <button className="h-fit w-fit items-center justify-center border-[5px] border-[#48BB78] hover:bg-[#48BB78] hover:text-white text-[#48BB78] rounded-[50px] px-[120px] py-[13px] text-[20px] font-[700] leading-[] cursor-pointer">
+                    Explore
+                </button>
             </div>
         </div>
     );
