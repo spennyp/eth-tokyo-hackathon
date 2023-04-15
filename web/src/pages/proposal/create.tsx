@@ -10,7 +10,7 @@ import { Slider, SliderTrack, SliderFilledTrack, SliderThumb, SliderMark } from 
 import { Input, Select } from "@chakra-ui/react";
 import { Text, Textarea } from "@chakra-ui/react";
 import { useState } from "react";
-import { tokens } from "./tokens";
+import { tokens } from "../../../common/tokens";
 
 export default function CreateProposal() {
     let [value, setValue] = useState("");
