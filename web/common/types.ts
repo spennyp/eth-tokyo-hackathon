@@ -8,6 +8,8 @@ export interface ProposalType {
     lender: string;
     fundDay: number;
     repayDay: number;
+    title: string;
+    description: string;
     state: LoanState;
 }
 

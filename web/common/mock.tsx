@@ -11,6 +11,8 @@ export const proposal: ProposalType = {
     repayDay: 10,
     state: LoanState.UNFUNDED,
     id: "3",
+    title: "title of loan",
+    description: "description of loan",
 };
 
 export const fundedProposals: ProposalType[] = [
@@ -25,6 +27,8 @@ export const fundedProposals: ProposalType[] = [
         repayDay: 10,
         state: LoanState.UNFUNDED,
         id: "1",
+        title: "title of loan",
+        description: "description of loan",
     },
     {
         borrower: "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
@@ -37,6 +41,8 @@ export const fundedProposals: ProposalType[] = [
         repayDay: 10,
         state: LoanState.UNFUNDED,
         id: "2",
+        title: "title of loan",
+        description: "description of loan",
     },
     {
         borrower: "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
@@ -49,6 +55,8 @@ export const fundedProposals: ProposalType[] = [
         repayDay: 10,
         state: LoanState.UNFUNDED,
         id: "3",
+        title: "title of loan",
+        description: "description of loan",
     },
 ];
 
@@ -64,6 +72,8 @@ export const createdProposals: ProposalType[] = [
         repayDay: 10,
         state: LoanState.UNFUNDED,
         id: "3",
+        title: "title of loan",
+        description: "description of loan",
     },
     {
         borrower: "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
@@ -76,6 +86,8 @@ export const createdProposals: ProposalType[] = [
         repayDay: 10,
         state: LoanState.UNFUNDED,
         id: "3",
+        title: "title of loan",
+        description: "description of loan",
     },
 ];
 
@@ -91,6 +103,8 @@ export const exploreProposals: ProposalType[] = [
         repayDay: 10,
         state: LoanState.UNFUNDED,
         id: "3",
+        title: "title of loan",
+        description: "description of loan",
     },
     {
         borrower: "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
@@ -103,6 +117,8 @@ export const exploreProposals: ProposalType[] = [
         repayDay: 10,
         state: LoanState.UNFUNDED,
         id: "3",
+        title: "title of loan",
+        description: "description of loan",
     },
     {
         borrower: "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
@@ -115,6 +131,8 @@ export const exploreProposals: ProposalType[] = [
         repayDay: 10,
         state: LoanState.UNFUNDED,
         id: "3",
+        title: "title of loan",
+        description: "description of loan",
     },
     {
         borrower: "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
@@ -127,6 +145,8 @@ export const exploreProposals: ProposalType[] = [
         repayDay: 10,
         state: LoanState.UNFUNDED,
         id: "3",
+        title: "title of loan",
+        description: "description of loan",
     },
     {
         borrower: "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
@@ -139,6 +159,8 @@ export const exploreProposals: ProposalType[] = [
         repayDay: 10,
         state: LoanState.UNFUNDED,
         id: "3",
+        title: "title of loan",
+        description: "description of loan",
     },
     {
         borrower: "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
@@ -151,5 +173,7 @@ export const exploreProposals: ProposalType[] = [
         repayDay: 10,
         state: LoanState.UNFUNDED,
         id: "3",
+        title: "title of loan",
+        description: "description of loan",
     },
 ];
