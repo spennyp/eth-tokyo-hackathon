@@ -3,7 +3,7 @@ import { BigNumber, Contract } from "ethers";
 import { useAccount } from "wagmi";
 
 import PeerToPeerLoansAbi from "../../abis/PeerToPeerLoans.json";
-import { PEER_TO_PEER_LOAN_ADDRESS } from "../../common/constants";
+import { PEER_TO_PEER_LOAN_ADDRESS } from "../common/constants";
 import useSendTransaction, { SendTransactionResponse } from "./useSendTransaction";
 
 interface UseRepayLoanConfig {

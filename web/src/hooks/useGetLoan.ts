@@ -2,7 +2,7 @@ import { Address, useAccount, useContractRead } from "wagmi";
 import { BigNumber, Contract } from "ethers";
 
 import PeerToPeerLoansAbi from "../../abis/PeerToPeerLoans.json";
-import { PEER_TO_PEER_LOAN_ADDRESS } from "../../common/constants";
+import { PEER_TO_PEER_LOAN_ADDRESS } from "../common/constants";
 import { useMemo } from "react";
 
 interface UseGetLoanConfig {
