@@ -10,5 +10,6 @@ export type ProposalType = {
 }
 
 export type ProposalsType = {
-    proposals: ProposalType[];
+    fundedProposals: ProposalType[];
+    createdProposals: ProposalType[];
 }
