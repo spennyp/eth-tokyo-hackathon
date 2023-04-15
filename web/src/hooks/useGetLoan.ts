@@ -5,7 +5,7 @@ import PeerToPeerLoansAbi from "../../abis/PeerToPeerLoans.json";
 import { PEER_TO_PEER_LOAN_ADDRESS } from "../../common/constants";
 import { useMemo } from "react";
 
-interface UseGetLoanProps {
+interface UseGetLoanConfig {
     loanId?: BigNumber;
 }
 
@@ -21,7 +21,7 @@ export interface Loan {
     refetch: () => void;
 }
 
-export default function useGetLoan({ loanId }: UseGetLoanProps): Loan | undefined {
+export default function useGetLoan({ loanId }: UseGetLoanConfig): Loan | undefined {
     const { data, refetch } = useContractRead({
         address: PEER_TO_PEER_LOAN_ADDRESS,
         abi: PeerToPeerLoansAbi,

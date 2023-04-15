@@ -1,12 +1,13 @@
 import { useMemo } from "react";
 import { BigNumber, Contract } from "ethers";
 import { Address, useAccount } from "wagmi";
+import { AddressZero } from "@ethersproject/constants";
 
 import PeerToPeerLoansAbi from "../../abis/PeerToPeerLoans.json";
 import { PEER_TO_PEER_LOAN_ADDRESS } from "../../common/constants";
 import useSendTransaction, { SendTransactionResponse } from "./useSendTransaction";
 
-interface UseCreateLoanProps {
+interface UseCreateLoanConfig {
     token?: Address;
     principal?: BigNumber;
     interest?: BigNumber;
@@ -18,7 +19,7 @@ export default function useCreateLoan({
     principal,
     interest,
     lengthDays,
-}: UseCreateLoanProps): SendTransactionResponse {
+}: UseCreateLoanConfig): SendTransactionResponse {
     const { address } = useAccount();
 
     const [transactionRequest, enableEagerFetch] = useMemo(() => {
@@ -26,8 +27,9 @@ export default function useCreateLoan({
         return [
             {
                 to: contract.address,
-                from: address,
+                from: address ?? AddressZero,
                 data: contract.interface.encodeFunctionData("createLoan", [token, principal, interest, lengthDays]),
+                gasLimit: BigNumber.from("1000000"), // Shouldn't be needed...
             },
             token != undefined && principal != undefined && interest != undefined && lengthDays != undefined,
         ];

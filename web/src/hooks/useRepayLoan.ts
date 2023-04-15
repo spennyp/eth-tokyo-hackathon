@@ -6,11 +6,11 @@ import PeerToPeerLoansAbi from "../../abis/PeerToPeerLoans.json";
 import { PEER_TO_PEER_LOAN_ADDRESS } from "../../common/constants";
 import useSendTransaction, { SendTransactionResponse } from "./useSendTransaction";
 
-interface UseRepayLoanProps {
+interface UseRepayLoanConfig {
     loanId?: BigNumber;
 }
 
-export default function useRepayLoan({ loanId }: UseRepayLoanProps): SendTransactionResponse {
+export default function useRepayLoan({ loanId }: UseRepayLoanConfig): SendTransactionResponse {
     const { address } = useAccount();
 
     const [transactionRequest, enableEagerFetch] = useMemo(() => {

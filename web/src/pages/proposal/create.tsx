@@ -1,3 +1,4 @@
+import useCreateLoan from "@/hooks/useCreateLoan";
 import { FormControl, FormLabel, FormErrorMessage, FormHelperText } from "@chakra-ui/react";
 import {
     NumberInput,
@@ -9,8 +10,14 @@ import {
 import { Slider, SliderTrack, SliderFilledTrack, SliderThumb, SliderMark } from "@chakra-ui/react";
 import { Input, Select } from "@chakra-ui/react";
 import { Text, Textarea } from "@chakra-ui/react";
+import { BigNumber } from "ethers";
 import { useState } from "react";
 import { tokens } from "../../../common/tokens";
+import { Address } from "wagmi";
+import { INTEREST_SCALER } from "../../../common/constants";
+import { AddressZero } from "@ethersproject/constants";
+import { create } from "domain";
+import { parseUnits } from "ethers/lib/utils.js";
 
 export default function CreateProposal() {
     let [value, setValue] = useState("");
@@ -21,7 +28,7 @@ export default function CreateProposal() {
     const [loanLength, setLoanLength] = useState(12);
     const [interestRate, setInterestRate] = useState(1.5);
     const [country, setCountry] = useState("");
-    const [token, setToken] = useState({ name: "", address: "", symbol: "" });
+    const [token, setToken] = useState({ name: "", address: "", symbol: "", decimals: 8 });
 
     const labelStyles = {
         mt: "2",
@@ -49,8 +56,15 @@ export default function CreateProposal() {
     // This function is triggered when the select changes
     const selectTokenChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const value = event.target.value as any;
-        setToken({ name: "", address: value, symbol: "" });
+        setToken({ name: "", address: value, symbol: "", decimals: 18 });
     };
+
+    const createLoanResponse = useCreateLoan({
+        token: token.address != "" ? (token.address as Address) : AddressZero,
+        principal: parseUnits(loanAmount, token.decimals),
+        interest: BigNumber.from((interestRate / 100) * INTEREST_SCALER),
+        lengthDays: BigNumber.from(loanLength * 30),
+    });
 
     const submitProposal = () => {
         console.log("loan amount", loanAmount);
@@ -58,6 +72,8 @@ export default function CreateProposal() {
         console.log("loan interest", interestRate);
         console.log("token", token);
         console.log("country", country);
+
+        createLoanResponse.send && createLoanResponse.send();
     };
 
     return (
