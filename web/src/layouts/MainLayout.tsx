@@ -10,7 +10,7 @@ export interface MainLayoutProps {
 
 function Header() {
     return (
-        <div className="w-full flex flex-row justify-between items-center p-4 bg-blue">
+        <div className="w-full flex flex-row justify-between items-center p-4 bg-secondaryBg">
             <div className="flex flex-row space-x-8">
                 <Text>LOGO</Text>
                 <Stack spacing={4} direction="row" align="center">
@@ -34,7 +34,7 @@ function Header() {
 
 function Footer() {
     return (
-        <Flex as="footer" width="100%" justifyContent="space-between" backgroundColor="blue" p={4}>
+        <Flex as="footer" width="100%" justifyContent="space-between" className="bg-secondaryBg" p={4}>
             FOOTER
         </Flex>
     );
@@ -42,7 +42,7 @@ function Footer() {
 
 function Body({ children }: MainLayoutProps) {
     return (
-        <Flex height="1000px" p={4} backgroundColor="green">
+        <Flex height="1000px" p={4} className="bg-white">
             {children}
         </Flex>
     );
