@@ -29,10 +29,13 @@ export default function ProposalPage(props: Loan) {
         <div className="flex w-[800px] mx-auto flex-col justify-start items-center space-y-4 px-[20px]">
             <div className="flex flex-row items-start w-full justify-between">
                 <div className="flex flex-col max-w-[400px] w-full">
-                    <p className="text-[40px] font-bold">{props.title}</p>
+                    <p className="text-[40px] font-bold">{props.title ?? "Fresh and Fab Laundry"}</p>
                     <Badge status={props.state.charAt(0) + props.state.slice(1).toLowerCase()} />
                     <p className="text-[15px] text-slate-400 mb-12">Created by: {props.borrower}</p>
-                    <p className="">{props.description}</p>
+                    <p className="">
+                        {props.description ??
+                            "Introducing Fresh and Fab Laundry, a female-driven venture providing superior, eco-friendly laundry services for busy urbanites. We're seeking a $0.1 business loan at a 1.5% interest rate to revolutionize the laundry experience with innovative cleaning technology and exceptional customer care. Our projected earnings estimate is $8,000 in the first year, with a promising 25% annual growth rate. Loan repayments will be made in convenient monthly installments, addressing both principal and interest, ensuring a transparent and trustworthy collaboration. Invest in Fresh and Fab Laundry and support a thriving business that delivers cleanliness, convenience, and female entrepreneurship in one dynamic package."}
+                    </p>
                 </div>
                 <div className="flex flex-col">
                     <Image
