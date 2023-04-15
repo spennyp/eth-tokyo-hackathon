@@ -1,10 +1,10 @@
-export type ProposalType = {
-    borrowerAddress: string;
-    tokenAddress: string;
+export interface ProposalType {
+    borrower: string;
+    token: string;
     principal: number;
     interest: number;
     lengthDays: number;
-    lenderAddress: string;
+    lender: string;
     fundDay: number;
     repaid: boolean;
 }
