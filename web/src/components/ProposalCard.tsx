@@ -8,7 +8,7 @@ interface IProps {
 
 export default function ProposalCard({ proposal }: IProps) {
     return (
-        <Link href={`/proposal/${proposal.borrower}/id`}>
+        <Link href={`/proposal/${proposal.borrower}/${proposal.id}`}>
             <div className="border border-1 group flex max-w-[450px] py-[10px] w-full h-[120px] space-x-4 flex-row justify-start hover:bg-slate-400 hover:cursor-pointer transition duration-150 rounded-md">
                 <Image
                     src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800"

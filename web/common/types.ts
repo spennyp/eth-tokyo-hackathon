@@ -7,6 +7,7 @@ export interface ProposalType {
     lender: string;
     fundDay: number;
     repaid: boolean;
+    id: string;
 }
 
 export type ProposalsType = {
