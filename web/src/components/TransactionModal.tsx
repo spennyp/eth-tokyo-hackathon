@@ -21,6 +21,7 @@ interface TransactionModalProps {
     isOpen: boolean;
     title: string;
     sendTransactionResponse?: SendTransactionResponse;
+    completeText?: string;
     closeCallback: () => void;
     completeCallback?: () => void;
 }
@@ -29,6 +30,7 @@ export default function TransactionModal({
     isOpen,
     title,
     sendTransactionResponse,
+    completeText,
     closeCallback,
     completeCallback,
 }: TransactionModalProps) {
@@ -38,6 +40,8 @@ export default function TransactionModal({
     const { chain } = useNetwork();
 
     const explorerLink = chain?.blockExplorers?.default.url + "/tx/" + sendTransactionResponse?.hash;
+
+    console.log(sendTransactionResponse);
 
     const close = useCallback(() => {
         sendTransactionResponse?.reset();
@@ -75,7 +79,12 @@ export default function TransactionModal({
         } else if (sendTransactionResponse?.hash && sendTransactionResponse?.receipt == undefined) {
             return ["Transaction submitted", "Please wait...", undefined, <Spinner size="xl" speed="0.8s" key={1} />];
         } else {
-            return ["Close", "Transaction successful!", complete, <CheckIcon boxSize={10} color="green" key={1} />];
+            return [
+                completeText ?? "Close",
+                "Transaction successful!",
+                complete,
+                <CheckIcon boxSize={10} color="green" key={1} />,
+            ];
         }
     }, [address, sendTransactionResponse, title, complete, setConnectKitModalOpen]);
 

@@ -15,11 +15,14 @@ export default function useFundLoan({ loanId }: UseFundLoanConfig): SendTransact
 
     const [transactionRequest, enableEagerFetch] = useMemo(() => {
         const contract = new Contract(PEER_TO_PEER_LOAN_ADDRESS, PeerToPeerLoansAbi);
+
+        console.log("DEBUG: ", contract.address, address, loanId);
         return [
             {
                 to: contract.address,
                 from: address,
                 data: contract.interface.encodeFunctionData("fundLoan", [loanId]),
+                gasLimit: BigNumber.from("500000"),
             },
             loanId != undefined,
         ];

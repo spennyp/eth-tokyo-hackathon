@@ -13,13 +13,14 @@ import { Text, Textarea } from "@chakra-ui/react";
 import { BigNumber } from "ethers";
 import { useRef, useState } from "react";
 import { tokens } from "../../common/tokens";
-import { Address } from "wagmi";
+import { Address, useNetwork } from "wagmi";
 import { INTEREST_SCALER } from "../../common/constants";
 import { AddressZero } from "@ethersproject/constants";
 import { create } from "domain";
 import { parseUnits } from "ethers/lib/utils.js";
 import TransactionModal from "@/components/TransactionModal";
 import { openLink } from "@/common/utils";
+import useApproveErc20 from "@/hooks/useApproveErc20";
 
 export default function CreateProposal() {
     let [value, setValue] = useState("");
@@ -30,8 +31,10 @@ export default function CreateProposal() {
     const [loanLength, setLoanLength] = useState(12);
     const [interestRate, setInterestRate] = useState(1.5);
     const [country, setCountry] = useState("");
-    const [token, setToken] = useState({ name: "", address: "", symbol: "", decimals: 8 });
+    const [token, setToken] = useState({ name: "", address: "", symbol: "", decimals: 6 });
     const [transactionModalOpen, setTransactionModalOpen] = useState<boolean>(false);
+
+    const { chain } = useNetwork();
 
     const labelStyles = {
         mt: "2",
@@ -59,25 +62,17 @@ export default function CreateProposal() {
     // This function is triggered when the select changes
     const selectTokenChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const value = event.target.value as any;
-        setToken({ name: "", address: value, symbol: "", decimals: 18 });
+        setToken({ name: "", address: value, symbol: "", decimals: 6 });
     };
 
     const createLoanResponse = useCreateLoan({
         token: token.address != "" ? (token.address as Address) : AddressZero,
-        principal: parseUnits(loanAmount, token.decimals),
+        principal: parseUnits(loanAmount != "" ? loanAmount : "0", token.decimals),
         interest: BigNumber.from((interestRate / 100) * INTEREST_SCALER),
         lengthDays: BigNumber.from(loanLength * 30),
     });
 
-    const submitProposal = () => {
-        console.log("loan amount", loanAmount);
-        console.log("loan duration", loanLength);
-        console.log("loan interest", interestRate);
-        console.log("token", token);
-        console.log("country", country);
-
-        createLoanResponse.send && createLoanResponse.send();
-    };
+    // const approveResponse = useApproveErc20({ token: token.address, minAmount: BigNumber.from("100000000000") });
 
     return (
         <div className="flex w-screen flex-col justify-center px-[20px] pt-[35px] pb-[70px] sm:px-[210px] md:flex-row md:pb-[106px] md:pt-[35px] lg:space-x-[80px] xl:space-x-[291px]">
@@ -141,7 +136,7 @@ export default function CreateProposal() {
                     <NumberInput
                         onChange={(valueString) => setLoanAmount(parse(valueString))}
                         value={format(loanAmount)}
-                        min={1}
+                        min={0}
                     >
                         <NumberInputField />
                         <NumberInputStepper>
@@ -204,13 +199,15 @@ export default function CreateProposal() {
                 <FormControl isRequired>
                     <FormLabel>Payment In</FormLabel>
                     <Select placeholder="Select Loan Token" onChange={selectTokenChange}>
-                        {tokens.map((token, id) => {
-                            return (
-                                <option key={id} value={token.address}>
-                                    {token.symbol}
-                                </option>
-                            );
-                        })}
+                        {tokens
+                            .filter((token) => token.chainId == chain?.id)
+                            .map((token, id) => {
+                                return (
+                                    <option key={id} value={token.address}>
+                                        {token.symbol}
+                                    </option>
+                                );
+                            })}
                     </Select>
                 </FormControl>
                 <button
@@ -226,6 +223,7 @@ export default function CreateProposal() {
                 title="Create loan"
                 sendTransactionResponse={createLoanResponse}
                 closeCallback={() => setTransactionModalOpen(false)}
+                completeText="Go to loan"
                 completeCallback={() => openLink("./", false)}
             />
         </div>

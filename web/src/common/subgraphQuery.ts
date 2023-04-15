@@ -46,7 +46,7 @@ export async function getLoansFromSubgraph(): Promise<Loan[] | undefined> {
     let loans = res?.data?.loans as Loan[] | undefined;
     loans = loans?.map((loan) => {
         // Temp hack....
-        return { ...loan, principal: loan.principal / 10 ** 8 };
+        return { ...loan, principal: loan.principal / 10 ** 6 };
     });
 
     return loans;

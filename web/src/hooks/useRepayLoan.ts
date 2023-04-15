@@ -20,6 +20,7 @@ export default function useRepayLoan({ loanId }: UseRepayLoanConfig): SendTransa
                 to: contract.address,
                 from: address,
                 data: contract.interface.encodeFunctionData("repayLoan", [loanId]),
+                gasLimit: BigNumber.from("500000"),
             },
             loanId != undefined,
         ];

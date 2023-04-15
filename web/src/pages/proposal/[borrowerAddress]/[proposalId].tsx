@@ -6,19 +6,33 @@ import { Progress } from "@chakra-ui/react";
 import Image from "next/image";
 import { Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption, TableContainer } from "@chakra-ui/react";
 import { getLoanFromSubgraph } from "@/common/subgraphQuery";
+import useFundLoan from "@/hooks/useFundLoan";
+import { BigNumber } from "ethers";
+import TransactionModal from "@/components/TransactionModal";
+import useRepayLoan from "@/hooks/useRepayLoan";
 
 export default function ProposalPage(props: Loan) {
     console.log(props);
     const router = useRouter();
     const { borrowerAddress, proposalId } = router.query;
     const [status, setStatus] = useState(0);
+    const [fundLoanTransactionModalOpen, setFundLoanTransactionModalOpen] = useState<boolean>(false);
+    const [repayLoanTransactionModalOpen, setRepayLoanTransactionModalOpen] = useState<boolean>(false);
+
+    const fundLoanResponse = useFundLoan({
+        loanId: BigNumber.from(proposalId as string),
+    });
+
+    const repayLoanResponse = useRepayLoan({
+        loanId: BigNumber.from(proposalId as string),
+    });
 
     return (
         <div className="flex w-[800px] mx-auto flex-col justify-start items-center space-y-4 px-[20px]">
             <div className="flex flex-row items-start w-full justify-between">
                 <div className="flex flex-col max-w-[400px] w-full">
                     <p className="text-[40px] font-bold">{props.title}</p>
-                    <Badge status={"Funded"} />
+                    <Badge status={props.state.charAt(0) + props.state.slice(1).toLowerCase()} />
                     <p className="text-[15px] text-slate-400 mb-12">Created by: {props.borrower}</p>
                     <p className="">{props.description}</p>
                 </div>
@@ -60,13 +74,33 @@ export default function ProposalPage(props: Loan) {
             </div>
             <ProgressComponent start={props.fundDay} duration={props.lengthDays} end={props.repayDay} />
             <div className="flex flex-row justify-start items-center self-start space-x-4">
-                <button className="self-start h-[45px] w-fit items-center justify-center rounded-[15px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-green text-white">
-                    Pay Loan
+                <button
+                    onClick={() => setFundLoanTransactionModalOpen(true)}
+                    className="self-start h-[45px] w-fit items-center justify-center rounded-[15px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-green text-white"
+                >
+                    Fund Load
                 </button>
-                <button className="self-start h-[45px] w-fit items-center justify-center rounded-[15px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-green text-white">
-                    Fund Proposal
+                <button
+                    onClick={() => setRepayLoanTransactionModalOpen(true)}
+                    className="self-start h-[45px] w-fit items-center justify-center rounded-[15px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-green text-white"
+                >
+                    Repay Loan
                 </button>
             </div>
+
+            <TransactionModal
+                isOpen={fundLoanTransactionModalOpen}
+                title="Fund loan"
+                sendTransactionResponse={fundLoanResponse}
+                closeCallback={() => setFundLoanTransactionModalOpen(false)}
+            />
+
+            <TransactionModal
+                isOpen={repayLoanTransactionModalOpen}
+                title="Repay loan"
+                sendTransactionResponse={repayLoanResponse}
+                closeCallback={() => setRepayLoanTransactionModalOpen(false)}
+            />
         </div>
     );
 }
@@ -107,7 +141,7 @@ export async function getServerSideProps(context: any) {
     const loan = await getLoanFromSubgraph(parseInt(proposalId));
 
     // let loanOrSeed = loan ?? exploreProposals[parseInt(proposalId) - 1];
-    let loanOrSeed = exploreProposals[parseInt(proposalId) - 1];
+    let loanOrSeed = loan; //exploreProposals[parseInt(proposalId) - 1];
 
     return {
         props: loanOrSeed,
