@@ -1,5 +1,5 @@
 import useCreateLoan from "@/hooks/useCreateLoan";
-import { FormControl, FormLabel, FormErrorMessage, FormHelperText } from "@chakra-ui/react";
+import { FormControl, FormLabel } from "@chakra-ui/react";
 import {
     NumberInput,
     NumberInputField,
@@ -18,6 +18,8 @@ import { INTEREST_SCALER } from "../../common/constants";
 import { AddressZero } from "@ethersproject/constants";
 import { create } from "domain";
 import { parseUnits } from "ethers/lib/utils.js";
+import TransactionModal from "@/components/TransactionModal";
+import { openLink } from "@/common/utils";
 
 export default function CreateProposal() {
     let [value, setValue] = useState("");
@@ -29,6 +31,7 @@ export default function CreateProposal() {
     const [interestRate, setInterestRate] = useState(1.5);
     const [country, setCountry] = useState("");
     const [token, setToken] = useState({ name: "", address: "", symbol: "", decimals: 8 });
+    const [transactionModalOpen, setTransactionModalOpen] = useState<boolean>(false);
 
     const labelStyles = {
         mt: "2",
@@ -211,12 +214,20 @@ export default function CreateProposal() {
                     </Select>
                 </FormControl>
                 <button
-                    onClick={submitProposal}
+                    onClick={() => setTransactionModalOpen(true)}
                     className="h-[40px] w-fit items-center justify-center rounded-[6px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-black text-white"
                 >
                     Create Proposal
                 </button>
             </div>
+
+            <TransactionModal
+                isOpen={transactionModalOpen}
+                title="Create loan"
+                sendTransactionResponse={createLoanResponse}
+                closeCallback={() => setTransactionModalOpen(false)}
+                completeCallback={() => openLink("./", false)}
+            />
         </div>
     );
 }

@@ -29,7 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
     return (
         <WagmiConfig client={client}>
             <ChakraProvider>
-                <ConnectKitProvider>
+                <ConnectKitProvider options={{ initialChainId: 0 }}>
                     <MainLayout>
                         <Component {...pageProps} />
                     </MainLayout>

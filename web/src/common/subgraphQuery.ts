@@ -43,7 +43,11 @@ export async function getLoansFromSubgraph(): Promise<Loan[] | undefined> {
     });
 
     const res = await client.query({ query: gql(loansQueryAll) });
-    const loans = res?.data?.loans as Loan[] | undefined;
+    let loans = res?.data?.loans as Loan[] | undefined;
+    loans = loans?.map((loan) => {
+        // Temp hack....
+        return { ...loan, principal: loan.principal / 10 ** 8 };
+    });
 
     return loans;
 }
