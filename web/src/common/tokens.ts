@@ -21,6 +21,14 @@ export const tokens = [
         },
     },
     {
+        chainId: 11155111,
+        address: "0x5d00fab5f2F97C4D682C1053cDCAA59c2c37900D",
+        name: "Aave GHO",
+        symbol: "GHO",
+        decimals: 18,
+        logoURI: "https://assets.coingecko.com/coins/images/12467/thumb/ghst_200.png?1600750321",
+    },
+    {
         chainId: 1,
         address: "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9",
         name: "Aave",
