@@ -8,7 +8,7 @@ export default function Home() {
     console.log(data);
     return (
         <>
-            MAIN APP - {address} - {data?.formatted}
+            Landing Page MAIN APP - {address} - {data?.formatted}
         </>
     );
 }
