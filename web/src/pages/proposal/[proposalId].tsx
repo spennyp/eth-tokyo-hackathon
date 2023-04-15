@@ -141,7 +141,7 @@ export async function getServerSideProps(context: any) {
         loan = await getLoanFromSubgraph(parseInt(proposalId));
     }
 
-    let loanOrSeed = loan ?? exploreProposals[(-1 * (parseInt(proposalId) - 1)) % exploreProposals.length];
+    let loanOrSeed = loan ?? exploreProposals[(-1 * parseInt(proposalId) - 1) % exploreProposals.length];
     // let loanOrSeed = exploreProposals[parseInt(proposalId) - 1];
 
     return {

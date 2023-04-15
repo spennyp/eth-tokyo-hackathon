@@ -19,7 +19,7 @@ export default function useCreateLoan({
     principal,
     interest,
     lengthDays,
-}: UseCreateLoanConfig): SendTransactionResponse {
+}: UseCreateLoanConfig): SendTransactionResponse & { loanId: BigNumber | undefined } {
     const { address } = useAccount();
 
     const [transactionRequest, enableEagerFetch] = useMemo(() => {
@@ -40,5 +40,13 @@ export default function useCreateLoan({
         enableEagerFetch,
     });
 
-    return response;
+    const loanId = useMemo(() => {
+        if (response?.receipt?.logs[0]?.topics[0]) {
+            return BigNumber.from(response.receipt.logs[0].topics[1]);
+        } else {
+            return undefined;
+        }
+    }, [response]);
+
+    return { ...response, loanId };
 }

@@ -23,7 +23,7 @@ export default function Explore(props: IProposals) {
 
 export async function getServerSideProps() {
     const loans = await getLoansFromSubgraph();
-    const loansWithSeeded = (loans ?? []).concat(exploreProposals);
+    const loansWithSeeded = exploreProposals.concat(loans ?? []);
 
     return {
         props: { proposals: loansWithSeeded },

@@ -29,7 +29,7 @@ function Header() {
     }, [router.asPath]);
 
     return (
-        <div className="w-full flex flex-row justify-between items-center p-4 bg-white fixed top-0 md:px-[112px]">
+        <div className="w-full flex flex-row justify-between items-center p-4 bg-white fixed top-0 md:px-[112px] z-50">
             <Link href="/" className="flex flex-row items-center justify-start space-x-2">
                 <Image alt="splend logo" width={50} height={50} src="/icon.svg" />
                 {/* <Text className="text-[24px] font-bold">Splend</Text> */}

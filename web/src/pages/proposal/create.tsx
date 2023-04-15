@@ -68,7 +68,7 @@ export default function CreateProposal() {
     const createLoanResponse = useCreateLoan({
         token: token.address != "" ? (token.address as Address) : AddressZero,
         principal: parseUnits(loanAmount != "" ? loanAmount : "0", token.decimals),
-        interest: BigNumber.from((interestRate / 100) * INTEREST_SCALER),
+        interest: BigNumber.from((Math.max(interestRate, 100) / 100) * INTEREST_SCALER),
         lengthDays: BigNumber.from(loanLength * 30),
     });
 
@@ -92,7 +92,7 @@ export default function CreateProposal() {
                     />
                 </FormControl>
                 {/* TODO: BEN - upload video */}
-                <button className="h-[40px] w-fit items-center justify-center rounded-[6px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-black text-white">
+                <button className="h-[40px] w-fit items-center justify-center rounded-[6px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-green text-white">
                     Upload Video
                 </button>
                 {/* <FormControl isRequired>
@@ -212,7 +212,7 @@ export default function CreateProposal() {
                 </FormControl>
                 <button
                     onClick={() => setTransactionModalOpen(true)}
-                    className="h-[40px] w-fit items-center justify-center rounded-[6px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-black text-white"
+                    className="h-[40px] w-fit items-center justify-center rounded-[6px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-green text-white"
                 >
                     Create Proposal
                 </button>
@@ -224,7 +224,7 @@ export default function CreateProposal() {
                 sendTransactionResponse={createLoanResponse}
                 closeCallback={() => setTransactionModalOpen(false)}
                 completeText="Go to loan"
-                completeCallback={() => openLink("./", false)}
+                completeCallback={() => openLink("./" + createLoanResponse?.loanId, false)}
             />
         </div>
     );
