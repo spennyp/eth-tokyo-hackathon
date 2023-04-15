@@ -1,6 +1,8 @@
-import { Flex, Text } from "@chakra-ui/layout";
+import { Flex, Text, Stack } from "@chakra-ui/layout";
 import { ConnectKitButton } from "connectkit";
 import { ReactNode } from "react";
+import NextLink from "next/link";
+import { Link } from "@chakra-ui/react";
 
 export interface MainLayoutProps {
     children: ReactNode;
@@ -8,8 +10,19 @@ export interface MainLayoutProps {
 
 function Header() {
     return (
-        <Flex as="header" width="100%" justifyContent="space-between" alignItems="center" p={4} backgroundColor="blue">
+        <Flex as="header" width="100%" justifyContent="justify-start" alignItems="center" p={4} backgroundColor="blue">
             <Text>LOGO</Text>
+            <Stack spacing={4} direction="row" align="center">
+                <Link as={NextLink} href="/">
+                    Home
+                </Link>
+                <Link as={NextLink} href="/explore">
+                    Explore
+                </Link>
+                <Link as={NextLink} href="/proposal/create">
+                    Create
+                </Link>
+            </Stack>
             <ConnectKitButton showBalance={true} />
         </Flex>
     );

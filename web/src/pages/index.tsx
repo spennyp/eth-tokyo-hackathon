@@ -1,9 +1,8 @@
-import { useAccount, useBalance, useChainId } from "wagmi";
+import { useAccount, useBalance } from "wagmi";
 
 export default function Home() {
     const { address } = useAccount();
     const { data } = useBalance(address);
-    // const { chain } = useChainId();
 
     console.log(data);
     return (
