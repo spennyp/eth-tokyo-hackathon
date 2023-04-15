@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
-import { Loan } from "../../../common/types";
-import { exploreProposals } from "../../../common/mock";
+import { Loan } from "../../common/types";
+import { exploreProposals } from "../../common/mock";
 import { useState } from "react";
 import { Progress } from "@chakra-ui/react";
 import Image from "next/image";
@@ -14,7 +14,7 @@ import useRepayLoan from "@/hooks/useRepayLoan";
 export default function ProposalPage(props: Loan) {
     console.log(props);
     const router = useRouter();
-    const { borrowerAddress, proposalId } = router.query;
+    const { proposalId } = router.query;
     const [status, setStatus] = useState(0);
     const [fundLoanTransactionModalOpen, setFundLoanTransactionModalOpen] = useState<boolean>(false);
     const [repayLoanTransactionModalOpen, setRepayLoanTransactionModalOpen] = useState<boolean>(false);
@@ -78,7 +78,7 @@ export default function ProposalPage(props: Loan) {
                     onClick={() => setFundLoanTransactionModalOpen(true)}
                     className="self-start h-[45px] w-fit items-center justify-center rounded-[15px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-green text-white"
                 >
-                    Fund Load
+                    Fund Loan
                 </button>
                 <button
                     onClick={() => setRepayLoanTransactionModalOpen(true)}
@@ -140,8 +140,8 @@ export async function getServerSideProps(context: any) {
     const { proposalId } = context.query;
     const loan = await getLoanFromSubgraph(parseInt(proposalId));
 
-    // let loanOrSeed = loan ?? exploreProposals[parseInt(proposalId) - 1];
-    let loanOrSeed = loan; //exploreProposals[parseInt(proposalId) - 1];
+    // let loanOrSeed = loan ?? exploreProposals[(parseInt(proposalId) - 1) % exploreProposals.length];
+    let loanOrSeed = exploreProposals[parseInt(proposalId) - 1];
 
     return {
         props: loanOrSeed,

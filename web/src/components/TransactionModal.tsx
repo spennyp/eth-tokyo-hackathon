@@ -112,7 +112,7 @@ export default function TransactionModal({
                     <Flex direction="column" width="100%" gap={2}>
                         {sendTransactionResponse?.hash && (
                             <Button
-                                colorScheme="blue"
+                                colorScheme="green"
                                 onClick={() => openLink(explorerLink, true)}
                                 width="100%"
                                 variant="outline"
@@ -121,7 +121,7 @@ export default function TransactionModal({
                             </Button>
                         )}
                         <Button
-                            colorScheme="blue"
+                            colorScheme="green"
                             onClick={() => buttonCallback && buttonCallback()}
                             width="100%"
                             isDisabled={buttonCallback == undefined}
