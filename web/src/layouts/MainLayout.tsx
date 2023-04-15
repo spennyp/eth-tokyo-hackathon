@@ -28,25 +28,30 @@ function Header() {
     }, [router.asPath]);
 
     return (
-        <div className="w-full flex flex-row justify-between items-center p-4 bg-secondaryBg">
+        <div className="w-full flex flex-row justify-between items-center p-4 bg-secondaryBg fixed top-0">
             <div className="flex flex-row space-x-8">
                 <Text>LOGO</Text>
                 <div className="flex flex-row justify-start items-center space-x-8">
-                    <Link href="/">
+                    {/* <Link href="/">
                         <p className={path === "/" ? activeHeaderTextButtonStyle : headerTextButtonStyle}>Home</p>
-                    </Link>
-                    <Link href="/explore">
-                        <p className={path === "/explore" ? activeHeaderTextButtonStyle : headerTextButtonStyle}>
-                            Explore
-                        </p>
-                    </Link>
+                    </Link> */}
                     <Link href="/proposal/create">
                         <p
                             className={
                                 path === "/proposal/create" ? activeHeaderTextButtonStyle : headerTextButtonStyle
                             }
                         >
-                            Create
+                            Create a Proposal
+                        </p>
+                    </Link>
+                    <Link href="/explore">
+                        <p className={path === "/explore" ? activeHeaderTextButtonStyle : headerTextButtonStyle}>
+                            Explore
+                        </p>
+                    </Link>
+                    <Link href="/proposal">
+                        <p className={path === "/proposal" ? activeHeaderTextButtonStyle : headerTextButtonStyle}>
+                            My Proposals
                         </p>
                     </Link>
                 </div>
@@ -68,7 +73,7 @@ function Footer() {
 
 function Body({ children }: MainLayoutProps) {
     return (
-        <Flex height="1000px" p={4} className="bg-white">
+        <Flex height="1000px" p={4} className="bg-white mt-[130px]">
             {children}
         </Flex>
     );
