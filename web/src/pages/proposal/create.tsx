@@ -10,6 +10,7 @@ import { Slider, SliderTrack, SliderFilledTrack, SliderThumb, SliderMark } from 
 import { Input, Select } from "@chakra-ui/react";
 import { Text, Textarea } from "@chakra-ui/react";
 import { useState } from "react";
+import { tokens } from "./tokens";
 
 export default function CreateProposal() {
     let [value, setValue] = useState("");
@@ -20,6 +21,7 @@ export default function CreateProposal() {
     const [loanLength, setLoanLength] = useState(12);
     const [interestRate, setInterestRate] = useState(1.5);
     const [country, setCountry] = useState("");
+    const [token, setToken] = useState({ name: "", address: "", symbol: "" });
 
     const labelStyles = {
         mt: "2",
@@ -43,6 +45,20 @@ export default function CreateProposal() {
         console.log(value);
     };
 
+    // This function is triggered when the select changes
+    const selectTokenChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const value = event.target.value as any;
+        setToken({ name: "", address: value, symbol: "" });
+    };
+
+    const submitProposal = () => {
+        console.log("loan amount", loanAmount);
+        console.log("loan duration", loanLength);
+        console.log("loan interest", interestRate);
+        console.log("token", token);
+        console.log("country", country);
+    };
+
     return (
         <div className="flex flex-row justify-center w-full">
             <div className="flex flex-col justify-start max-w-[400px] w-[400px] self-center space-y-4">
@@ -63,6 +79,18 @@ export default function CreateProposal() {
                             return (
                                 <option key={id} value={country}>
                                     {country}
+                                </option>
+                            );
+                        })}
+                    </Select>
+                </FormControl>
+                <FormControl isRequired>
+                    <FormLabel>Token</FormLabel>
+                    <Select placeholder="Select Loan Token" onChange={selectTokenChange}>
+                        {tokens.map((token, id) => {
+                            return (
+                                <option key={id} value={token.address}>
+                                    {token.symbol}
                                 </option>
                             );
                         })}
@@ -92,6 +120,7 @@ export default function CreateProposal() {
                     />
                 </FormControl>
                 <FormControl isRequired>
+                    <FormLabel>Total Loan Amount</FormLabel>
                     <NumberInput
                         onChange={(valueString) => setLoanAmount(parse(valueString))}
                         value={format(loanAmount)}
@@ -158,7 +187,10 @@ export default function CreateProposal() {
                 <button className="h-[40px] w-fit items-center justify-center rounded-[6px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-black text-white">
                     Upload Video
                 </button>
-                <button className="h-[40px] w-fit items-center justify-center rounded-[6px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-black text-white">
+                <button
+                    onClick={submitProposal}
+                    className="h-[40px] w-fit items-center justify-center rounded-[6px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-black text-white"
+                >
                     Create Proposal
                 </button>
             </div>
