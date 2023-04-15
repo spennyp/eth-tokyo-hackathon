@@ -30,10 +30,10 @@ function Header() {
 
     return (
         <div className="w-full flex flex-row justify-between items-center p-4 bg-secondaryBg fixed top-0">
-            <div className="flex flex-row items-center justify-start space-x-2">
+            <Link href="/" className="flex flex-row items-center justify-start space-x-2">
                 <Image alt="splend logo" width={50} height={50} src="/icon.svg" />
                 <Text className="text-[24px] font-bold">Splend</Text>
-            </div>
+            </Link>
             <div className="flex flex-row justify-start items-center space-x-8">
                 {/* <Link href="/">
                         <p className={path === "/" ? activeHeaderTextButtonStyle : headerTextButtonStyle}>Home</p>
