@@ -5,6 +5,7 @@ import { getLoansFromSubgraph } from "@/common/subgraphQuery";
 
 interface IProposals {
     proposals: Loan[];
+    seedProposals: Loan[];
 }
 
 export default function Explore(props: IProposals) {

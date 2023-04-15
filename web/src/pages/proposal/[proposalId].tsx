@@ -12,19 +12,17 @@ import TransactionModal from "@/components/TransactionModal";
 import useRepayLoan from "@/hooks/useRepayLoan";
 
 export default function ProposalPage(props: Loan) {
-    console.log(props);
     const router = useRouter();
     const { proposalId } = router.query;
-    const [status, setStatus] = useState(0);
     const [fundLoanTransactionModalOpen, setFundLoanTransactionModalOpen] = useState<boolean>(false);
     const [repayLoanTransactionModalOpen, setRepayLoanTransactionModalOpen] = useState<boolean>(false);
 
     const fundLoanResponse = useFundLoan({
-        loanId: BigNumber.from(proposalId as string),
+        loanId: BigNumber.from(Math.abs(parseInt(proposalId as string)).toString()),
     });
 
     const repayLoanResponse = useRepayLoan({
-        loanId: BigNumber.from(proposalId as string),
+        loanId: BigNumber.from(Math.abs(parseInt(proposalId as string)).toString()),
     });
 
     return (
@@ -138,10 +136,13 @@ function ProgressComponent({ start, duration, end }: { start: number; duration: 
 export async function getServerSideProps(context: any) {
     // const res = await fetch(`https://.../data`);
     const { proposalId } = context.query;
-    const loan = await getLoanFromSubgraph(parseInt(proposalId));
+    let loan = undefined;
+    if (proposalId >= 0) {
+        loan = await getLoanFromSubgraph(parseInt(proposalId));
+    }
 
-    // let loanOrSeed = loan ?? exploreProposals[(parseInt(proposalId) - 1) % exploreProposals.length];
-    let loanOrSeed = exploreProposals[parseInt(proposalId) - 1];
+    let loanOrSeed = loan ?? exploreProposals[(-1 * (parseInt(proposalId) - 1)) % exploreProposals.length];
+    // let loanOrSeed = exploreProposals[parseInt(proposalId) - 1];
 
     return {
         props: loanOrSeed,

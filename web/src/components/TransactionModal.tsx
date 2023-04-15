@@ -86,7 +86,7 @@ export default function TransactionModal({
                 <CheckIcon boxSize={10} color="green" key={1} />,
             ];
         }
-    }, [address, sendTransactionResponse, title, complete, setConnectKitModalOpen]);
+    }, [address, sendTransactionResponse, title, complete, completeText, setConnectKitModalOpen]);
 
     return (
         <Modal isOpen={isOpen} onClose={() => console.log("CLOSE")}>

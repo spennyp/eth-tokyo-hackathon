@@ -10,7 +10,7 @@ export const proposal: Loan = {
     fundDay: 0,
     repayDay: 10,
     state: LoanState.UNFUNDED,
-    id: "1",
+    id: "-1",
     title: "Stitched to Perfection",
     image: "/images/1.jpeg",
     description:
@@ -27,7 +27,7 @@ export const proposal2: Loan = {
     fundDay: 0,
     repayDay: 10,
     state: LoanState.UNFUNDED,
-    id: "2",
+    id: "-2",
     title: "Fresh and Fab Laundry",
     image: "/images/2.jpeg",
     description:
@@ -44,7 +44,7 @@ export const proposal3: Loan = {
     fundDay: 0,
     repayDay: 10,
     state: LoanState.UNFUNDED,
-    id: "3",
+    id: "-3",
     title: "Brew Bliss",
     image: "/images/3.jpeg",
     description:
@@ -61,7 +61,7 @@ export const proposal4: Loan = {
     fundDay: 0,
     repayDay: 10,
     state: LoanState.UNFUNDED,
-    id: "4",
+    id: "-4",
     title: "YoYoZen",
     image: "/images/4.jpeg",
     description:
@@ -77,7 +77,7 @@ export const proposal5: Loan = {
     fundDay: 0,
     repayDay: 10,
     state: LoanState.UNFUNDED,
-    id: "5",
+    id: "-5",
     title: "SnapShot Studio",
     image: "/images/5.jpeg",
     description:
@@ -93,7 +93,7 @@ export const proposal6: Loan = {
     fundDay: 0,
     repayDay: 10,
     state: LoanState.UNFUNDED,
-    id: "6",
+    id: "-6",
     title: "Timeless Craft Leathers",
     image: "/images/6.jpeg",
     description:
