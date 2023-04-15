@@ -7,13 +7,13 @@ export default function Proposal(props: ProposalsType) {
         <div className="flex w-full h-full flex-col justify-start items-center px-[20px] pb-[70px] space-y-8">
             <p className="text-[40px] font-bold text-center">Funded Proposals</p>
             <div className="grid grid-cols-2 w-full h-fit gap-8 justify-items-center">
-                {fundedProposals.map((element, id) => {
+                {props.fundedProposals.map((element, id) => {
                     return <ProposalCard key={id} proposal={element} />;
                 })}
             </div>
             <p className="text-[40px] font-bold text-center">Created Proposals</p>
             <div className="grid grid-cols-2 w-full h-fit gap-8 justify-items-center">
-                {createdProposals.map((element, id) => {
+                {props.createdProposals.map((element, id) => {
                     return <ProposalCard key={id} proposal={element} />;
                 })}
             </div>
