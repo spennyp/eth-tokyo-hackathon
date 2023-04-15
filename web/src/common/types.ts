@@ -19,6 +19,7 @@ export interface Loan {
     title?: string;
     description?: string;
     state: LoanState;
+    image?: string;
 }
 
 export type ProposalsType = {

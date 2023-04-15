@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { Loan } from "../../../common/types";
-import { proposal } from "../../../common/mock";
+import { exploreProposals } from "../../../common/mock";
 import { useState } from "react";
 import { Progress } from "@chakra-ui/react";
 import Image from "next/image";
@@ -24,7 +24,7 @@ export default function ProposalPage(props: Loan) {
                 </div>
                 <div className="flex flex-col">
                     <Image
-                        src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800"
+                        src={props.image || "/images/1.jpeg"}
                         alt="Picture of business deal"
                         width={300}
                         height={300}
@@ -35,7 +35,7 @@ export default function ProposalPage(props: Loan) {
                             <Tbody>
                                 <Tr>
                                     <Td>Loan Amount:</Td>
-                                    <Td>{props.principal}</Td>
+                                    <Td>{props.principal > 100000 ? 10000 : props.principal}</Td>
                                 </Tr>
                                 <Tr>
                                     <Td>Loan Period:</Td>
@@ -59,12 +59,14 @@ export default function ProposalPage(props: Loan) {
                 </div>
             </div>
             <ProgressComponent start={props.fundDay} duration={props.lengthDays} end={props.repayDay} />
-            <button className="self-start h-[45px] w-fit items-center justify-center rounded-[15px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-green text-white">
-                Pay Loan
-            </button>
-            <button className="self-start h-[45px] w-fit items-center justify-center rounded-[15px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-green text-white">
-                Fund Proposal
-            </button>
+            <div className="flex flex-row justify-start items-center self-start space-x-4">
+                <button className="self-start h-[45px] w-fit items-center justify-center rounded-[15px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-green text-white">
+                    Pay Loan
+                </button>
+                <button className="self-start h-[45px] w-fit items-center justify-center rounded-[15px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-green text-white">
+                    Fund Proposal
+                </button>
+            </div>
         </div>
     );
 }
@@ -84,15 +86,15 @@ function ProgressComponent({ start, duration, end }: { start: number; duration: 
             <div className="flex flex-row justify-between">
                 <div className="flex flex-col">
                     <p>Created</p>
-                    <p>{start}</p>
+                    <p>04/15/2023</p>
                 </div>
                 <div className="flex flex-col">
                     <p>Funded</p>
-                    <p>{duration}</p>
+                    <p>180 days</p>
                 </div>
                 <div className="flex flex-col">
                     <p>Expiry</p>
-                    <p>{end}</p>
+                    <p>10/12/2023</p>
                 </div>
             </div>
         </div>
@@ -104,7 +106,8 @@ export async function getServerSideProps(context: any) {
     const { proposalId } = context.query;
     const loan = await getLoanFromSubgraph(parseInt(proposalId));
 
-    const loanOrSeed = loan ?? proposal;
+    // let loanOrSeed = loan ?? exploreProposals[parseInt(proposalId) - 1];
+    let loanOrSeed = exploreProposals[parseInt(proposalId) - 1];
 
     return {
         props: loanOrSeed,

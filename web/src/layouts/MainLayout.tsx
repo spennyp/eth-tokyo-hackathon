@@ -68,13 +68,13 @@ function Header() {
 function Footer() {
     return (
         <Flex as="footer" width="100%" justifyContent="space-between" className="bg-[#FFFCF5]" p={4}>
-            FOOTER
+            {/* FOOTER */}
         </Flex>
     );
 }
 
 function Body({ children }: MainLayoutProps) {
-    return <div className="bg-[#FFFCF5] h-[1000px] p-4 pt-[130px]">{children}</div>;
+    return <div className="bg-[#FFFCF5] min-h-[1000px] p-4 pt-[130px]">{children}</div>;
 }
 
 export default function MainLayout({ children }: MainLayoutProps) {
