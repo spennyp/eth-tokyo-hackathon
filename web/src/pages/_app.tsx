@@ -21,9 +21,10 @@ export const linea = {
     blockExplorers: {
         default: { name: "Linea", url: "https://explorer.goerli.linea.build/" },
     },
-} as const satisfies Chain;
+} as const;
 
 import MainLayout from "@/layouts/MainLayout";
+import Chain from "connectkit/build/components/Common/Chain";
 
 const alchemyId = process.env.NEXT_PUBLIC_ALCHEMY_ID;
 const chains = [polygon, localhost, gnosis, scrollTestnet, linea];
