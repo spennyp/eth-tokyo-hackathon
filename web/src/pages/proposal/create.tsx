@@ -56,7 +56,7 @@ export default function CreateProposal() {
                     <FormLabel>Last name</FormLabel>
                     <Input placeholder="Last name" />
                 </FormControl>
-                <FormControl>
+                <FormControl isRequired>
                     <FormLabel>Country</FormLabel>
                     <Select placeholder="Select country" onChange={selectCountryChange}>
                         {countryList.map((country, id) => {
@@ -105,9 +105,9 @@ export default function CreateProposal() {
                     </NumberInput>
                 </FormControl>
                 <FormControl isRequired>
-                    <Text>
+                    <FormLabel>
                         Loan Period: {loanLength} month{loanLength !== 1 && "s"}
-                    </Text>
+                    </FormLabel>
                     <Slider aria-label="slider-ex-6" min={1} max={24} onChange={(val) => setLoanLength(val)}>
                         <SliderMark value={3} {...labelStyles}>
                             3
@@ -140,7 +140,7 @@ export default function CreateProposal() {
                     </Slider>
                 </FormControl>
                 <FormControl isRequired>
-                    <Text>Interest Rate: {interestRate}%</Text>
+                    <FormLabel>Interest Rate: {interestRate}%</FormLabel>
                     <Slider
                         aria-label="slider-ex-6"
                         min={0}
