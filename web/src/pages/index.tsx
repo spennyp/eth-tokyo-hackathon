@@ -11,6 +11,22 @@ interface IProposals {
     proposals: Loan[];
 }
 
+const images = [
+    "/images/chains/gho.svg",
+    "/images/chains/gnosis.png",
+    "/images/chains/linea.svg",
+    "/images/chains/polygon.png",
+    "/images/chains/scroll.png",
+];
+
+const imageComponent = [
+    <Image key={1} src={"/images/chains/gho.svg"} width={50} height={25} alt="chain logo" />,
+    <Image key={2} src={"/images/chains/gnosis.png"} width={50} height={25} alt="chain logo" />,
+    <Image key={3} src={"/images/chains/linea.svg"} width={100} height={25} alt="chain logo" />,
+    <Image key={4} src={"/images/chains/polygon.png"} width={50} height={25} alt="chain logo" />,
+    <Image key={5} src={"/images/chains/scroll.png"} width={100} height={25} alt="chain logo" />,
+];
+
 export default function Home(props: IProposals) {
     const { address } = useAccount();
 
@@ -96,6 +112,10 @@ export default function Home(props: IProposals) {
                         </p>
                     </div>
                 </div>
+            </div>
+            <div className="flex flex-col justify-center items-center mx-auto space-y-4 my-16">
+                <p className="text-[45px] font-bold text-center mb-4">Powering loans with</p>
+                <div className="flex flex-row justify-center items-center space-x-14">{imageComponent}</div>
             </div>
             <div className="flex flex-col justify-center items-center mx-auto space-y-4 my-16">
                 <p className="text-[45px] font-bold text-center mb-4">Trusted by</p>
