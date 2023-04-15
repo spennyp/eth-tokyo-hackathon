@@ -25,6 +25,7 @@ export default function CreateProposal() {
 
     const labelStyles = {
         mt: "2",
+        ml: "-2.5",
         fontSize: "sm",
     };
 
@@ -63,52 +64,9 @@ export default function CreateProposal() {
         <div className="flex flex-row justify-center w-full">
             <div className="flex flex-col justify-start max-w-[400px] w-[400px] self-center space-y-4">
                 <p className="text-2xl font-bold">Create Proposal</p>
-                <p className=""></p>
                 <FormControl isRequired>
-                    <FormLabel>First name</FormLabel>
-                    <Input placeholder="First name" />
-                </FormControl>
-                <FormControl isRequired>
-                    <FormLabel>Last name</FormLabel>
-                    <Input placeholder="Last name" />
-                </FormControl>
-                <FormControl isRequired>
-                    <FormLabel>Country</FormLabel>
-                    <Select placeholder="Select country" onChange={selectCountryChange}>
-                        {countryList.map((country, id) => {
-                            return (
-                                <option key={id} value={country}>
-                                    {country}
-                                </option>
-                            );
-                        })}
-                    </Select>
-                </FormControl>
-                <FormControl isRequired>
-                    <FormLabel>Token</FormLabel>
-                    <Select placeholder="Select Loan Token" onChange={selectTokenChange}>
-                        {tokens.map((token, id) => {
-                            return (
-                                <option key={id} value={token.address}>
-                                    {token.symbol}
-                                </option>
-                            );
-                        })}
-                    </Select>
-                </FormControl>
-                <FormControl className="">
-                    <FormLabel>Email address</FormLabel>
-                    <Input type="email" />
-                    <FormHelperText>Well never share your email.</FormHelperText>
-                </FormControl>
-                <FormControl isRequired>
-                    <FormLabel>Bio</FormLabel>
-                    <Textarea
-                        value={bioValue}
-                        onChange={handleInputBioChange}
-                        placeholder="Tell us about you"
-                        size="sm"
-                    />
+                    <FormLabel>Proposal name</FormLabel>
+                    <Input placeholder="Proposal Name" />
                 </FormControl>
                 <FormControl isRequired>
                     <FormLabel>Description</FormLabel>
@@ -119,6 +77,46 @@ export default function CreateProposal() {
                         size="sm"
                     />
                 </FormControl>
+                {/* TODO: BEN - upload video */}
+                <button className="h-[40px] w-fit items-center justify-center rounded-[6px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-black text-white">
+                    Upload Video
+                </button>
+                {/* <FormControl isRequired>
+                    <FormLabel>First name</FormLabel>
+                    <Input placeholder="First name" />
+                </FormControl> */}
+                {/* <FormControl isRequired>
+                    <FormLabel>Last name</FormLabel>
+                    <Input placeholder="Last name" />
+                </FormControl> */}
+                {/* <FormControl isRequired>
+                    <FormLabel>Country</FormLabel>
+                    <Select placeholder="Select country" onChange={selectCountryChange}>
+                        {countryList.map((country, id) => {
+                            return (
+                                <option key={id} value={country}>
+                                    {country}
+                                </option>
+                            );
+                        })}
+                    </Select>
+                </FormControl> */}
+
+                {/* <FormControl className="">
+                    <FormLabel>Email address</FormLabel>
+                    <Input type="email" />
+                    <FormHelperText>Well never share your email.</FormHelperText>
+                </FormControl> */}
+                {/* <FormControl isRequired>
+                    <FormLabel>Bio</FormLabel>
+                    <Textarea
+                        value={bioValue}
+                        onChange={handleInputBioChange}
+                        placeholder="Tell us about you"
+                        size="sm"
+                    />
+                </FormControl> */}
+
                 <FormControl isRequired>
                     <FormLabel>Total Loan Amount</FormLabel>
                     <NumberInput
@@ -133,7 +131,7 @@ export default function CreateProposal() {
                         </NumberInputStepper>
                     </NumberInput>
                 </FormControl>
-                <FormControl isRequired>
+                <FormControl isRequired className="pt-[30px]">
                     <FormLabel>
                         Loan Period: {loanLength} month{loanLength !== 1 && "s"}
                     </FormLabel>
@@ -168,7 +166,7 @@ export default function CreateProposal() {
                         <SliderThumb />
                     </Slider>
                 </FormControl>
-                <FormControl isRequired>
+                <FormControl isRequired className="pt-[30px]">
                     <FormLabel>Interest Rate: {interestRate}%</FormLabel>
                     <Slider
                         aria-label="slider-ex-6"
@@ -183,10 +181,19 @@ export default function CreateProposal() {
                         <SliderThumb />
                     </Slider>
                 </FormControl>
-                {/* TODO: BEN - upload video */}
-                <button className="h-[40px] w-fit items-center justify-center rounded-[6px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-black text-white">
-                    Upload Video
-                </button>
+
+                <FormControl isRequired>
+                    <FormLabel>Payment In</FormLabel>
+                    <Select placeholder="Select Loan Token" onChange={selectTokenChange}>
+                        {tokens.map((token, id) => {
+                            return (
+                                <option key={id} value={token.address}>
+                                    {token.symbol}
+                                </option>
+                            );
+                        })}
+                    </Select>
+                </FormControl>
                 <button
                     onClick={submitProposal}
                     className="h-[40px] w-fit items-center justify-center rounded-[6px]  px-[20px] py-[10px] text-[14px] font-semibold leading-[] cursor-pointer bg-black text-white"
