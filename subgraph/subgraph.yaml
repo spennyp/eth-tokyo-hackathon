@@ -1,0 +1,30 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: PeerToPeerLoans
+    network: matic
+    source:
+      address: "0xF5063E5F37645Ed22Dd2db8668A86E49373A5eF1"
+      abi: PeerToPeerLoans
+      startBlock: 41550341
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - LoanCreated
+        - LoanFunded
+        - LoanRepayed
+      abis:
+        - name: PeerToPeerLoans
+          file: ./abis/PeerToPeerLoans.json
+      eventHandlers:
+        - event: LoanCreated(indexed uint256,indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleLoanCreated
+        - event: LoanFunded(indexed uint256,indexed address,uint256)
+          handler: handleLoanFunded
+        - event: LoanRepayed(indexed uint256)
+          handler: handleLoanRepayed
+      file: ./src/peer-to-peer-loans.ts

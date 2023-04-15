@@ -1,0 +1,58 @@
+interface Event {
+    " { Transaction hash }-{ Log index } "
+    id: ID!
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: String!
+}
+
+type LoanCreated implements Event @entity(immutable: true) {
+    id: ID!
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: String!
+    loanId: BigInt! # uint256
+    borrower: String! # address
+    token: String! # address
+    principal: BigInt! # uint256
+    interest: BigInt! # uint256
+    lengthDays: BigInt! # uint256
+}
+
+type LoanFunded implements Event @entity(immutable: true) {
+    id: ID!
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: String!
+    loanId: BigInt! # uint256
+    lender: String! # address
+    fundDay: BigInt! # uint256
+}
+
+type LoanRepayed implements Event @entity(immutable: true) {
+    id: ID!
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transactionHash: String!
+    loanId: BigInt! # uint256
+}
+
+enum LoanState {
+    UNFUNDED
+    ACTIVE
+    REPAID
+}
+
+type Loan @entity {
+    " Loan ID"
+    id: ID!
+    borrower: String! # address
+    token: String! # address
+    principal: BigInt!
+    interest: BigDecimal!
+    lengthDays: Int!
+    lender: String! # address
+    fundDay: BigInt!
+    repayDay: BigInt!
+    state: LoanState!
+}
