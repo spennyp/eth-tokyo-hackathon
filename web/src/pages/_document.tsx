@@ -5,7 +5,7 @@ export default function Document() {
     return (
         <Html lang="en">
             <Head title={"Splendid"}>
-                <title>Splendid</title>
+                <title>Splend</title>
             </Head>
             <body>
                 <Main />
