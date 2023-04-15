@@ -4,6 +4,8 @@ pragma solidity ^0.8.13;
 import {IERC20} from "openzeppelin-contracts/token/ERC20/IERC20.sol";
 import {SafeERC20} from "openzeppelin-contracts/token/ERC20/utils/SafeERC20.sol";
 
+// import "forge-std/console.sol";
+
 contract PeerToPeerLoans {
     using SafeERC20 for IERC20;
 
@@ -70,7 +72,7 @@ contract PeerToPeerLoans {
         Loan storage loan = loans[id];
 
         require(loan.lender == address(0), "fundProposal/proposal-already-funded");
-        require(loan.lender != msg.sender, "fundProposal/self-funding-not-allowed");
+        require(loan.borrower != msg.sender, "fundProposal/self-funding-not-allowed");
 
         loan.lender = msg.sender;
         loan.fundDay = block.timestamp / 1 days;
@@ -102,6 +104,36 @@ contract PeerToPeerLoans {
         pure
         returns (uint256 interest)
     {
-        return principal * interestBips * daysBorrowed / 365 / 10 ** 4;
+        // simple_interest = principal * interest_rate_per_year * num_years
+        //                 = principal * (interest_bips / 10^4) * days / 365
+        //                 = principal * interest_bips * days / (365 * 10^4)
+        return (principal * interestBips * daysBorrowed) / (365 * (10 ** 4));
+    }
+
+    function getLoan(uint256 id)
+        external
+        view
+        returns (
+            address borrower,
+            address token,
+            uint256 principal,
+            uint256 interest,
+            uint256 lengthDays,
+            address lender,
+            uint256 fundDay,
+            bool repaid
+        )
+    {
+        Loan storage loan = loans[id];
+        return (
+            loan.borrower,
+            loan.token,
+            loan.principal,
+            loan.interest,
+            loan.lengthDays,
+            loan.lender,
+            loan.fundDay,
+            loan.repaid
+        );
     }
 }

@@ -5,10 +5,11 @@ import { ConnectKitProvider, ConnectKitButton, getDefaultClient, useIsMounted } 
 import { mainnet, polygon, optimism, arbitrum } from "wagmi/chains";
 import "../globals.css";
 
+
 import MainLayout from "@/layouts/MainLayout";
 
 const alchemyId = process.env.NEXT_PUBLIC_ALCHEMY_ID;
-const chains = [mainnet, polygon, optimism, arbitrum];
+const chains = [mainnet, polygon, optimism, arbitrum, localhost];
 
 const client = createClient(
     getDefaultClient({

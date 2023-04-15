@@ -2,7 +2,6 @@ import { useAccount, useBalance } from "wagmi";
 
 export default function Home() {
     const { address } = useAccount();
-    // const { data } = useBalance(address);
 
     return (
         <div className="flex flex-grow flex-col">
