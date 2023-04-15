@@ -1,4 +1,4 @@
-import { ProposalType } from "./types";
+import { LoanState, ProposalType } from "./types";
 
 export const proposal: ProposalType = {
     borrower: "0x3C44CdDdB6a900fa2b585dd299e03d12FA4293BC",
@@ -8,7 +8,8 @@ export const proposal: ProposalType = {
     lengthDays: 365,
     lender: "0x90F79bf6EB2c4f870365E785982E1f101E93b906",
     fundDay: 0,
-    repaid: false,
+    repayDay: 10,
+    state: LoanState.UNFUNDED,
     id: "3",
 };
 
@@ -21,7 +22,8 @@ export const fundedProposals: ProposalType[] = [
         lengthDays: 180,
         lender: "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
         fundDay: 0,
-        repaid: false,
+        repayDay: 10,
+        state: LoanState.UNFUNDED,
         id: "1",
     },
     {
@@ -32,7 +34,8 @@ export const fundedProposals: ProposalType[] = [
         lengthDays: 365,
         lender: "0x90F79bf6EB2c4f870365E785982E1f101E93b906",
         fundDay: 0,
-        repaid: false,
+        repayDay: 10,
+        state: LoanState.UNFUNDED,
         id: "2",
     },
     {
@@ -43,7 +46,8 @@ export const fundedProposals: ProposalType[] = [
         lengthDays: 365,
         lender: "0x90F79bf6EB2c4f870365E785982E1f101E93b906",
         fundDay: 0,
-        repaid: false,
+        repayDay: 10,
+        state: LoanState.UNFUNDED,
         id: "3",
     },
 ];
@@ -57,7 +61,8 @@ export const createdProposals: ProposalType[] = [
         lengthDays: 180,
         lender: "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
         fundDay: 0,
-        repaid: false,
+        repayDay: 10,
+        state: LoanState.UNFUNDED,
         id: "3",
     },
     {
@@ -68,7 +73,8 @@ export const createdProposals: ProposalType[] = [
         lengthDays: 365,
         lender: "0x90F79bf6EB2c4f870365E785982E1f101E93b906",
         fundDay: 0,
-        repaid: false,
+        repayDay: 10,
+        state: LoanState.UNFUNDED,
         id: "3",
     },
 ];
@@ -82,7 +88,8 @@ export const exploreProposals: ProposalType[] = [
         lengthDays: 180,
         lender: "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
         fundDay: 0,
-        repaid: false,
+        repayDay: 10,
+        state: LoanState.UNFUNDED,
         id: "3",
     },
     {
@@ -93,7 +100,8 @@ export const exploreProposals: ProposalType[] = [
         lengthDays: 365,
         lender: "0x90F79bf6EB2c4f870365E785982E1f101E93b906",
         fundDay: 0,
-        repaid: false,
+        repayDay: 10,
+        state: LoanState.UNFUNDED,
         id: "3",
     },
     {
@@ -104,7 +112,8 @@ export const exploreProposals: ProposalType[] = [
         lengthDays: 365,
         lender: "0x90F79bf6EB2c4f870365E785982E1f101E93b906",
         fundDay: 0,
-        repaid: false,
+        repayDay: 10,
+        state: LoanState.UNFUNDED,
         id: "3",
     },
     {
@@ -115,7 +124,8 @@ export const exploreProposals: ProposalType[] = [
         lengthDays: 180,
         lender: "0x70997970C51812dc3A010C7d01b50e0d17dc79C8",
         fundDay: 0,
-        repaid: false,
+        repayDay: 10,
+        state: LoanState.UNFUNDED,
         id: "3",
     },
     {
@@ -126,7 +136,8 @@ export const exploreProposals: ProposalType[] = [
         lengthDays: 365,
         lender: "0x90F79bf6EB2c4f870365E785982E1f101E93b906",
         fundDay: 0,
-        repaid: false,
+        repayDay: 10,
+        state: LoanState.UNFUNDED,
         id: "3",
     },
     {
@@ -137,7 +148,8 @@ export const exploreProposals: ProposalType[] = [
         lengthDays: 365,
         lender: "0x90F79bf6EB2c4f870365E785982E1f101E93b906",
         fundDay: 0,
-        repaid: false,
+        repayDay: 10,
+        state: LoanState.UNFUNDED,
         id: "3",
     },
 ];

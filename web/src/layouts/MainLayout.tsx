@@ -3,6 +3,7 @@ import { ConnectKitButton } from "connectkit";
 import { ReactNode, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import Image from "next/image";
 
 export interface MainLayoutProps {
     children: ReactNode;
@@ -10,9 +11,9 @@ export interface MainLayoutProps {
 
 function Header() {
     const headerTextButtonStyle =
-        "cursor-pointer hidden md:block text-[14px] font-semibold pt-1 text-linkDisabled underline-offset-4 hover:underline";
+        "cursor-pointer hidden md:block text-[18px] font-semibold pt-1 text-linkDisabled underline-offset-4 hover:underline";
     const activeHeaderTextButtonStyle =
-        "cursor-pointer hidden md:block text-[14px] font-semibold pt-1 underline-offset-4 text-primary underline";
+        "cursor-pointer hidden md:block text-[18px] font-semibold pt-1 underline-offset-4 text-primary underline";
     const router = useRouter();
     const [path, setPath] = useState("");
 
@@ -29,35 +30,36 @@ function Header() {
 
     return (
         <div className="w-full flex flex-row justify-between items-center p-4 bg-secondaryBg fixed top-0">
-            <div className="flex flex-row space-x-8">
-                <Text>LOGO</Text>
-                <div className="flex flex-row justify-start items-center space-x-8">
-                    {/* <Link href="/">
+            <div className="flex flex-row items-center justify-start space-x-2">
+                <Image alt="splend logo" width={50} height={50} src="/icon.svg" />
+                <Text className="text-[24px] font-bold">Splend</Text>
+            </div>
+            <div className="flex flex-row justify-start items-center space-x-8">
+                {/* <Link href="/">
                         <p className={path === "/" ? activeHeaderTextButtonStyle : headerTextButtonStyle}>Home</p>
                     </Link> */}
-                    <Link href="/proposal/create">
-                        <p
-                            className={
-                                path === "/proposal/create" ? activeHeaderTextButtonStyle : headerTextButtonStyle
-                            }
-                        >
-                            Create a Proposal
-                        </p>
-                    </Link>
-                    <Link href="/explore">
-                        <p className={path === "/explore" ? activeHeaderTextButtonStyle : headerTextButtonStyle}>
-                            Explore
-                        </p>
-                    </Link>
-                    <Link href="/proposal">
-                        <p className={path === "/proposal" ? activeHeaderTextButtonStyle : headerTextButtonStyle}>
-                            My Proposals
-                        </p>
-                    </Link>
-                </div>
+                <Link href="/proposal/create">
+                    <p className={path === "/proposal/create" ? activeHeaderTextButtonStyle : headerTextButtonStyle}>
+                        Create a Proposal
+                    </p>
+                </Link>
+                <Link href="/explore">
+                    <p className={path === "/explore" ? activeHeaderTextButtonStyle : headerTextButtonStyle}>Explore</p>
+                </Link>
+                <Link href="/proposal">
+                    <p className={path === "/proposal" ? activeHeaderTextButtonStyle : headerTextButtonStyle}>
+                        My Proposals
+                    </p>
+                </Link>
             </div>
             <div>
-                <ConnectKitButton showBalance={true} />
+                <ConnectKitButton
+                    customTheme={{
+                        "--ck-overlay-background": "rgba(255, 0, 0, 0.5)",
+                        "--ck-connectbutton-background": "rgba(72, 187, 120, 1)",
+                    }}
+                    showBalance={true}
+                />
             </div>
         </div>
     );

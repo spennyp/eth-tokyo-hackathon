@@ -1,4 +1,5 @@
 export interface ProposalType {
+    id: string;
     borrower: string;
     token: string;
     principal: number;
@@ -6,11 +7,17 @@ export interface ProposalType {
     lengthDays: number;
     lender: string;
     fundDay: number;
-    repaid: boolean;
-    id: string;
+    repayDay: number;
+    state: LoanState;
 }
 
 export type ProposalsType = {
     fundedProposals: ProposalType[];
     createdProposals: ProposalType[];
+}
+ 
+export enum LoanState {
+    UNFUNDED= "UNFUNDED",
+    ACTIVE= "ACTIVE",
+    REPAID= "REPAID",
 }
