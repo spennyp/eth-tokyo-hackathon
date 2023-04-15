@@ -9,7 +9,7 @@ interface IProps {
 export default function ProposalCard({ proposal }: IProps) {
     return (
         <Link href={{ pathname: `/proposal/${proposal.borrower}/${proposal.id}` }}>
-            <div className="border border-1 group flex max-w-[450px] py-[10px] w-full h-[120px] space-x-4 flex-row justify-start items-center hover:bg-[#FFFCF5] hover:cursor-pointer hover:border-green transition duration-150 rounded-md">
+            <div className="border border-1 group flex max-w-[450px] py-[10px] w-full h-[120px] space-x-4 flex-row justify-start items-center hover:bg-white hover:cursor-pointer hover:border-green transition duration-150 rounded-md">
                 <div className="w-[100px] h-[100px] p-[10px] flex">
                     <Image
                         src={proposal.image || "/images/1.jpeg"}
