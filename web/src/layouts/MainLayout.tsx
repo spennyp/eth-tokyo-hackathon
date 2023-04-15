@@ -32,21 +32,26 @@ function Header() {
             <div className="flex flex-row space-x-8">
                 <Text>LOGO</Text>
                 <div className="flex flex-row justify-start items-center space-x-8">
-                    <Link href="/">
+                    {/* <Link href="/">
                         <p className={path === "/" ? activeHeaderTextButtonStyle : headerTextButtonStyle}>Home</p>
-                    </Link>
-                    <Link href="/explore">
-                        <p className={path === "/explore" ? activeHeaderTextButtonStyle : headerTextButtonStyle}>
-                            Explore
-                        </p>
-                    </Link>
+                    </Link> */}
                     <Link href="/proposal/create">
                         <p
                             className={
                                 path === "/proposal/create" ? activeHeaderTextButtonStyle : headerTextButtonStyle
                             }
                         >
-                            Create
+                            Create a Proposal
+                        </p>
+                    </Link>
+                    <Link href="/explore">
+                        <p className={path === "/explore" ? activeHeaderTextButtonStyle : headerTextButtonStyle}>
+                            Explore
+                        </p>
+                    </Link>
+                    <Link href="/proposal">
+                        <p className={path === "/proposal" ? activeHeaderTextButtonStyle : headerTextButtonStyle}>
+                            My Proposals
                         </p>
                     </Link>
                 </div>
