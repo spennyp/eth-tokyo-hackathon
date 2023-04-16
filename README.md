@@ -9,9 +9,20 @@
 -   [polygonscan](https://polygonscan.com/address/0xf5063e5f37645ed22dd2db8668a86e49373a5ef1)
 -   [polygonscan tweet](https://twitter.com/spencerperkins_/status/1647233020225798150)
 
+### Gnosis Contract
+
+-   [Gnosis explorer](https://blockscout.com/xdai/mainnet/address/0xEA4aD7964B05E09c1709319e826aAC07ea076De9/contracts#address-tabs)
+-   0xEA4aD7964B05E09c1709319e826aAC07ea076De9
+
 ### Linea Contract Address
 
--   [blockscount]()
+-   [Linea explorer](https://explorer.goerli.linea.build/address/0xEcebA5D72a0251bb2281062C82d349EEE9d28cEa)
+-   0xEcebA5D72a0251bb2281062C82d349EEE9d28cEa
+
+### Scroll Contract Address
+
+-   [Scroll explorer](https://blockscout.scroll.io/address/0xEcebA5D72a0251bb2281062C82d349EEE9d28cEa/contracts#address-tabs)
+-   0xEcebA5D72a0251bb2281062C82d349EEE9d28cEa
 
 ### Repository Hierarchy
 
