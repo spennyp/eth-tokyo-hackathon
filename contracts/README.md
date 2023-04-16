@@ -67,8 +67,8 @@ forge create --rpc-url https://rpc.gnosischain.com \
 forge verify-contract \
     --chain-id 100 \
     --etherscan-api-key ${GNOSIS_API_KEY} \
-    --compiler-version v0.8.17+commit.8df45f5f \
-    0xEA4aD7964B05E09c1709319e826aAC07ea076De9 \
+    --compiler-version v0.8.19+commit.7dd6d404 \
+    0x32EE3003A628F5Eff063b99826AFF9873B23f362 \
     src/PeerToPeerLoans.sol:PeerToPeerLoans
 ```
 
