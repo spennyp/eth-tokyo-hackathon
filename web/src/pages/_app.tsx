@@ -2,7 +2,7 @@ import { AppProps } from "next/app";
 import { ChakraProvider } from "@chakra-ui/react";
 import { WagmiConfig, createClient } from "wagmi";
 import { ConnectKitProvider, ConnectKitButton, getDefaultClient, useIsMounted } from "connectkit";
-import { polygon, localhost, gnosis, scrollTestnet } from "wagmi/chains";
+import { polygon, localhost, gnosis, scrollTestnet, sepolia } from "wagmi/chains";
 import "../globals.css";
 
 export const linea = {
@@ -27,7 +27,7 @@ import MainLayout from "@/layouts/MainLayout";
 import Chain from "connectkit/build/components/Common/Chain";
 
 const alchemyId = process.env.NEXT_PUBLIC_ALCHEMY_ID;
-const chains = [polygon, localhost, gnosis, scrollTestnet, linea];
+const chains = [polygon, localhost, gnosis, scrollTestnet, linea, sepolia];
 
 const client = createClient(
     getDefaultClient({
